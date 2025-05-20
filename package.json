@@ -9,7 +9,7 @@
      "restart": "pm2 restart MANJU-MD"
     },
   "dependencies": {
-    "@whiskeysockets/baileys": "6.7.16",              
+    "@whiskeysockets/baileys": "github:whiskeysockets/baileys",              
     "@adiwajshing/keyed-db": "^0.2.4",
     "qrcode": "^1.5.4",
     "awesome-phonenumber": "^7.4.0",
