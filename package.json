@@ -9,7 +9,7 @@
      "restart": "pm2 restart robin"
     },
   "dependencies": {
-    "@whiskeysockets/baileys": "github:seiren-primrose/PL-Baileys",
+    "@whiskeysockets/baileys": "github:whiskeysockets/baileys",
     "qrcode": "^1.5.4",
     "awesome-phonenumber": "^7.5.0",
     "pino": "^9.7.0",
