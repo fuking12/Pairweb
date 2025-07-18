@@ -21,7 +21,7 @@ function removeFile(FilePath) {
 router.get("/", async (req, res) => {
   let num = req.query.number;
   async function RobinPair() {
-    const { state, saveCreds } = await useMultiFileAuthState(`./session`);
+    const { state, saveCreds } = await useMultiFileAuthState("./session");
     try {
       let RobinPairWeb = makeWASocket({
         auth: {
@@ -94,7 +94,8 @@ router.get("/", async (req, res) => {
             });
             const msg1 = await RobinPairWeb.sendMessage(user_jid, { text: mg });
           } catch (e) {
-            exec("pm2 restart prabath");
+            console.log("Session handling error:", e);
+            // Fallback: pm2 එක Replit එකේ නොවැඩෙන බන්ද්රය, log කරන්න
           }
 
           await delay(100);
@@ -111,9 +112,7 @@ router.get("/", async (req, res) => {
         }
       });
     } catch (err) {
-      exec("pm2 restart Robin-md");
-      console.log("service restarted");
-      RobinPair();
+      console.log("Error occurred:", err);
       await removeFile("./session");
       if (!res.headersSent) {
         await res.send({ code: "Service Unavailable" });
@@ -125,7 +124,7 @@ router.get("/", async (req, res) => {
 
 process.on("uncaughtException", function (err) {
   console.log("Caught exception: " + err);
-  exec("pm2 restart Robin");
+  // pm2 restart Replit එකේ නොවැඩෙන බන්ද්රය, log කරන්න
 });
 
 module.exports = router;
